@@ -1,9 +1,13 @@
-export const getTodayData = (): {
+export const getDateInfo = (
+  date: Date | string
+): {
   date: string;
   month: string;
   year: string;
   day: string;
 } => {
+  const parsedDate = new Date(date);
+
   const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const months = [
     'January',
@@ -19,11 +23,10 @@ export const getTodayData = (): {
     'November',
     'December',
   ];
-  const today = new Date();
   return {
-    date: today.getDate().toString(),
-    month: months[today.getMonth()],
-    year: today.getFullYear().toString(),
-    day: weekdays[today.getDay()],
+    date: parsedDate.getDate().toString(),
+    month: months[parsedDate.getMonth()],
+    year: parsedDate.getFullYear().toString(),
+    day: weekdays[parsedDate.getDay()],
   };
 };

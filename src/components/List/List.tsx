@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, List, Typography } from 'antd';
 
-import { getTodayData } from '../../utils/dateUtils';
+import { getDateInfo } from '../../utils/dateUtils';
 
 const { Title, Text } = Typography;
 
@@ -25,7 +25,7 @@ const data = [
 ];
 
 const ListComponent: React.FC = () => {
-  const todayData = getTodayData();
+  const todayData = getDateInfo(new Date());
 
   return (
     <List
