@@ -30,6 +30,9 @@
         "quotes": ["error", "single"],
         "semi": ["error", "always"],
         "prettier/prettier": [ "error", { "endOfLine": "auto" } ],
+        "no-multi-spaces": ["error", "always"],
+        "space-in-parens": ["error", "always"],
+        "no-multiple-empty-lines": ["error", "always"],
         "@typescript-eslint/no-var-requires": 0
     },
     "settings": {
