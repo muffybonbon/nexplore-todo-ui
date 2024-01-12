@@ -33,7 +33,6 @@
         "prettier/prettier": [ "error", { "endOfLine": "auto" } ],
         "no-multi-spaces": "error",
         "no-multiple-empty-lines": "error",
-        "space-in-parens": ["error", "always"],
         "@typescript-eslint/no-var-requires": 0
     },
     "settings": {
