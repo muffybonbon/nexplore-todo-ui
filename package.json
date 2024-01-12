@@ -1,22 +1,14 @@
 {
   "name": "nexplore-todo-ui",
   "version": "1.0.0",
-  "license": "MIT",
   "description": "A frontend repository for nexplore todo app",
-  "keywords": [
-    "react",
-    "typescript",
-    "webpack",
-    "eslint",
-    "prettier",
-    "styled-components",
-    "antd"
-  ],
   "main": "index.tsx",
   "repository": { 
     "type": "git", 
     "url": "https://github.com/muffybonbon/nexplore-todo-ui.git" 
   },
+  "author": "Harry",
+  "license": "ISC",
   "engines" : { 
     "npm" : ">=8.0.0 <9.0.0",
     "node" : ">=16.0.0 <17.0.0"
