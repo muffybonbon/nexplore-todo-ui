@@ -6,8 +6,8 @@ import { ITodoItemProps } from '../../types/todo.types';
 
 const { Text } = Typography;
 
-const StyledText = styled(Text)<{ isDone: boolean }>`
-  text-decoration: ${(props) => (props.isDone ? 'line-through' : 'none')};
+const StyledText = styled(Text)<{ 'is-done': string }>`
+  text-decoration: ${(props) => (props['is-done'] === 'true' ? 'line-through' : 'none')};
 `;
 
 const StyledButton = styled(Button)`
@@ -19,13 +19,17 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const TodoItem: React.FC<ITodoItemProps> = ({ item, onUpdateTodoStatus }) => {
+const TodoItem: React.FC<ITodoItemProps> = ({ item, onUpdateTodoStatus, onDeleteTodo }) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const isDone = item.is_done;
 
-  const onUpdateStatus = () => {
+  const onClickUpdateStatus = () => {
     onUpdateTodoStatus(item.id, !isDone);
+  };
+
+  const onClickDelete = () => {
+    onDeleteTodo(item.id);
   };
 
   return (
@@ -33,17 +37,19 @@ const TodoItem: React.FC<ITodoItemProps> = ({ item, onUpdateTodoStatus }) => {
       actions={[
         <div key={item.id}>
           <StyledButton type="default">🖊️</StyledButton>
-          <StyledButton type="default" onClick={onUpdateStatus}>
+          <StyledButton type="default" onClick={onClickUpdateStatus}>
             ✅
           </StyledButton>
-          <StyledButton type="default">❌</StyledButton>
+          <StyledButton type="default" onClick={onClickDelete}>
+            ❌
+          </StyledButton>
         </div>,
       ]}
     >
       <List.Item.Meta
-        title={<StyledText isDone={isDone}>{item.title}</StyledText>}
+        title={<StyledText is-done={isDone.toString()}>{item.title}</StyledText>}
         description={
-          <StyledText isDone={isDone} type="secondary">
+          <StyledText is-done={isDone.toString()} type="secondary">
             {new Date(item.created_at).toLocaleDateString()}
           </StyledText>
         }

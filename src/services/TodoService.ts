@@ -35,11 +35,11 @@ class TodoService extends APIService {
     }
   }
 
-  async deleteTodoById(id: number): Promise<void> {
+  async deleteTodoById(id: number): Promise<ITodoID | null> {
     try {
-      return await this.delete<void>(`/todos/${id}`);
+      return await this.delete<ITodo>(`/todos/${id}`);
     } catch (error) {
-      return;
+      return null;
     }
   }
 }

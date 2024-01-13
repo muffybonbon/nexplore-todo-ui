@@ -42,10 +42,18 @@ const HomePage: React.FC = () => {
     }
   };
 
+  const onDeleteTodo = async (id: number) => {
+    setIsLoading(true);
+    const deleteResult = await TodoAPI.deleteTodoById(id);
+    if (deleteResult && deleteResult.id) {
+      fetchTodos();
+    }
+  };
+
   return (
     <>
       <TodoCreate onCreate={onCreateTodo} isLoading={isLoading} />
-      <TodoView data={todos} onUpdateTodoStatus={onUpdateTodoStatus} />
+      <TodoView data={todos} onUpdateTodoStatus={onUpdateTodoStatus} onDeleteTodo={onDeleteTodo} />
     </>
   );
 };

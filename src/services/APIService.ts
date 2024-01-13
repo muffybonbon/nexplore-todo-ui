@@ -28,7 +28,7 @@ class APIService {
   private async request<T>(config: AxiosRequestConfig): Promise<T> {
     try {
       const response: AxiosResponse<ISuccessResponse<T>> = await this.axiosInstance(config);
-      if (response.status !== HTTPStatusEnum.OK) {
+      if (response.status !== HTTPStatusEnum.OK || (HTTPStatusEnum.OK && response.config.method !== 'get')) {
         toast(response.data.message, { type: 'success' });
       }
       return response.data.data;

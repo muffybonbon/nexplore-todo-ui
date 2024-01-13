@@ -18,16 +18,18 @@ export interface ITodoID {
 
 export interface ITodoViewProps {
   data: ITodo[];
+  onDeleteTodo: (id: number) => void;
   onUpdateTodoStatus: (id: number, isDone: boolean) => void;
 }
 
 /* Component */
 export interface ITodoCreateProps {
-  onCreate: (todo: ITodoCreate) => void;
   isLoading: boolean;
+  onCreate: (todo: ITodoCreate) => void;
 }
 
 export interface ITodoItemProps {
-  onUpdateTodoStatus: (id: number, isDone: boolean) => void;
   item: ITodo;
+  onDeleteTodo: (id: number) => void;
+  onUpdateTodoStatus: (id: number, isDone: boolean) => void;
 }
