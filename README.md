@@ -3,6 +3,8 @@
 ## Description
 Nexplore Todo UI is a front-end repository for the Nexplore Todo application. This project is built using React and styled with Styled Components. It utilizes Ant Design for UI components, Axios for HTTP requests, and React Toastify for user notifications.
 
+![screen-shot](https://i.imgur.com/25S4WJu.png)
+
 ## Installation and Setup
 Clone the repository:
 ```shell
