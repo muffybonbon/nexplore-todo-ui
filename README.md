@@ -21,12 +21,12 @@ Install dependencies:
 $ npm install
 ```
 
-Create .env file in root level
+Create .env file in root level:
 ```shell
 $ touch .env
 ```
 
-Place the environment variables in the the `.env` file
+Place the environment variables in the the `.env` file:
 ```
 API_URL='http://localhost:8080'
 ```
