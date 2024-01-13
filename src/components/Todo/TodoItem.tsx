@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, List, Typography } from 'antd';
 import styled from 'styled-components';
+import { toast } from 'react-toastify';
 
 import { ITodoItemProps } from '../../types/todo.types';
 
@@ -19,24 +20,29 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const TodoItem: React.FC<ITodoItemProps> = ({ item, onUpdateTodoStatus, onDeleteTodo }) => {
-  const [isEditing, setIsEditing] = useState<boolean>(false);
+const TodoItem: React.FC<ITodoItemProps> = ({ item, onDeleteTodo, onUpdateTodo, onUpdateTodoStatus }) => {
+  const { is_done } = item;
 
-  const isDone = item.is_done;
-
-  const onClickUpdateStatus = () => {
-    onUpdateTodoStatus(item.id, !isDone);
+  const onClickUpdateStatus = (): void => {
+    onUpdateTodoStatus(item.id, !is_done);
   };
 
-  const onClickDelete = () => {
+  const onClickDelete = (): void => {
     onDeleteTodo(item.id);
+  };
+
+  const onFinishedEdit = (value: string): void => {
+    if (value) {
+      onUpdateTodo(item.id, { title: value, is_done });
+    } else {
+      toast('Todo title cannot be empty', { type: 'error' });
+    }
   };
 
   return (
     <List.Item
       actions={[
         <div key={item.id}>
-          <StyledButton type="default">🖊️</StyledButton>
           <StyledButton type="default" onClick={onClickUpdateStatus}>
             ✅
           </StyledButton>
@@ -47,9 +53,13 @@ const TodoItem: React.FC<ITodoItemProps> = ({ item, onUpdateTodoStatus, onDelete
       ]}
     >
       <List.Item.Meta
-        title={<StyledText is-done={isDone.toString()}>{item.title}</StyledText>}
+        title={
+          <StyledText editable={{ onChange: onFinishedEdit }} is-done={is_done.toString()}>
+            {item.title}
+          </StyledText>
+        }
         description={
-          <StyledText is-done={isDone.toString()} type="secondary">
+          <StyledText is-done={is_done.toString()} type="secondary">
             {new Date(item.created_at).toLocaleDateString()}
           </StyledText>
         }

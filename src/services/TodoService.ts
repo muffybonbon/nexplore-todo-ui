@@ -19,9 +19,9 @@ class TodoService extends APIService {
     }
   }
 
-  async updateTodoById(id: number, updatedTodo: ITodo): Promise<ITodoID | null> {
+  async updateTodoById(id: number, updatedTodo: Partial<ITodo>): Promise<ITodoID | null> {
     try {
-      return await this.put<ITodo, ITodoCreate>(`/todos/${id}`, updatedTodo);
+      return await this.put<ITodo, Partial<ITodo>>(`/todos/${id}`, updatedTodo);
     } catch (error) {
       return null;
     }

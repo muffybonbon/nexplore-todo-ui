@@ -6,10 +6,16 @@ export interface ITodo {
   created_at: Date;
   created_by: string;
   updated_at: Date;
+  updated_by: string;
 }
 
 export interface ITodoCreate {
   title: string;
+}
+
+export interface ITodoUpdate {
+  title: string;
+  is_done: boolean;
 }
 
 export interface ITodoID {
@@ -19,7 +25,8 @@ export interface ITodoID {
 export interface ITodoViewProps {
   data: ITodo[];
   onDeleteTodo: (id: number) => void;
-  onUpdateTodoStatus: (id: number, isDone: boolean) => void;
+  onUpdateTodo: (id: number, todo: ITodoUpdate) => void;
+  onUpdateTodoStatus: (id: number, is_done: boolean) => void;
 }
 
 /* Component */
@@ -31,5 +38,6 @@ export interface ITodoCreateProps {
 export interface ITodoItemProps {
   item: ITodo;
   onDeleteTodo: (id: number) => void;
+  onUpdateTodo: (id: number, todo: ITodoUpdate) => void;
   onUpdateTodoStatus: (id: number, isDone: boolean) => void;
 }

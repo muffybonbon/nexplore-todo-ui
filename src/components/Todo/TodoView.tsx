@@ -16,7 +16,7 @@ const HeaderTitle = styled.p.withConfig(Text)`
   font-weight: bold;
 `;
 
-const Todo: React.FC<ITodoViewProps> = ({ data, onUpdateTodoStatus, onDeleteTodo }) => {
+const Todo: React.FC<ITodoViewProps> = ({ data, onDeleteTodo, onUpdateTodo, onUpdateTodoStatus }) => {
   const { date, month, year } = getDateInfo(new Date());
 
   return (
@@ -30,7 +30,12 @@ const Todo: React.FC<ITodoViewProps> = ({ data, onUpdateTodoStatus, onDeleteTodo
       bordered
       dataSource={data}
       renderItem={(item) => (
-        <TodoItem item={item} onUpdateTodoStatus={onUpdateTodoStatus} onDeleteTodo={onDeleteTodo} />
+        <TodoItem
+          item={item}
+          onDeleteTodo={onDeleteTodo}
+          onUpdateTodo={onUpdateTodo}
+          onUpdateTodoStatus={onUpdateTodoStatus}
+        />
       )}
     />
   );
