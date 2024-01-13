@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "webpack serve --open --mode development --port 4000",
-    "build": "webpack --mode production",
+    "build": "npm run lint && webpack --mode production",
     "lint": "eslint src/**/*.ts --fix"
   },
   "dependencies": {
