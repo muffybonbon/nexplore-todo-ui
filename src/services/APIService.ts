@@ -48,7 +48,10 @@ class APIService {
         let errorMessage = 'An unexpected error occurred';
         if (error.code === AxiosErrorEnum.ERR_NETWORK) {
           errorMessage = 'Network Error';
-        } else if (error.code === AxiosErrorEnum.ERR_BAD_REQUEST && error.response) {
+        } else if (
+          (error.code === AxiosErrorEnum.ERR_BAD_REQUEST || error.code === AxiosErrorEnum.ERR_BAD_RESPONSE) &&
+          error.response
+        ) {
           errorMessage = error.response.data?.message;
         }
         toast(`Error occurred. Reason: ${errorMessage}`, { type: 'error' });

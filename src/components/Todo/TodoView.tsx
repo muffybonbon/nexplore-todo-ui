@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { getDateInfo } from '../../utils/dateUtils';
 
-import { ITodo } from '../../types/components/todo.component.types';
+import { ITodo } from '../../types/todo.types';
 
 const { Text } = Typography;
 

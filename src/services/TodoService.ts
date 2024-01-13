@@ -1,6 +1,6 @@
 import APIService from './APIService';
 
-import { ITodo } from '../types/components/todo.component.types';
+import { ITodo, ITodoCreate, ITodoID } from '../types/todo.types';
 
 class TodoService extends APIService {
   async getTodos(): Promise<ITodo[] | []> {
@@ -11,20 +11,36 @@ class TodoService extends APIService {
     }
   }
 
-  addTodo(newTodo: Omit<ITodo, 'id'>): Promise<ITodo> {
-    return this.post<ITodo, Omit<ITodo, 'id'>>('/todos', newTodo);
+  async addTodo(newTodo: ITodoCreate): Promise<ITodoID | null> {
+    try {
+      return await this.post<ITodo, ITodoCreate>('/todos', newTodo);
+    } catch (error) {
+      return null;
+    }
   }
 
-  updateTodoById(id: number, updatedTodo: ITodo): Promise<ITodo> {
-    return this.put<ITodo, ITodo>(`/todos/${id}`, updatedTodo);
+  async updateTodoById(id: number, updatedTodo: ITodo): Promise<ITodoID | null> {
+    try {
+      return await this.put<ITodo, ITodoCreate>(`/todos/${id}`, updatedTodo);
+    } catch (error) {
+      return null;
+    }
   }
 
-  patchTodoById(id: number, updatedTodo: Partial<ITodo>): Promise<ITodo> {
-    return this.patch<ITodo, Partial<ITodo>>(`/todos/${id}`, updatedTodo);
+  async patchTodoById(id: number, updatedTodo: Partial<ITodo>): Promise<ITodoID | null> {
+    try {
+      return await this.patch<ITodo, Partial<ITodo>>(`/todos/${id}`, updatedTodo);
+    } catch (error) {
+      return null;
+    }
   }
 
-  deleteTodoById(id: number): Promise<void> {
-    return this.delete<void>(`/todos/${id}`);
+  async deleteTodoById(id: number): Promise<void> {
+    try {
+      return await this.delete<void>(`/todos/${id}`);
+    } catch (error) {
+      return;
+    }
   }
 }
 
