@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col } from 'antd';
 import styled from 'styled-components';
 
-import { IChildrenProps } from '../../types/genericTypes';
+import { IChildrenProps } from '../../types/generic.types';
 
 const Container = styled.div`
   min-height: 100vh;

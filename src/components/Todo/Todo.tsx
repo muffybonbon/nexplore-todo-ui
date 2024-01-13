@@ -4,12 +4,12 @@ import styled from 'styled-components';
 
 import { getDateInfo } from '../../utils/dateUtils';
 
-import { ITodoItem } from '../../types/components/todoTypes';
+import { ITodo } from '../../types/components/todo.component.types';
 
 const { Text } = Typography;
 
 interface ITodoProps {
-  data: ITodoItem[];
+  data: ITodo[];
 }
 
 const HeaderTitle = styled.p.withConfig(Text)`
@@ -35,7 +35,7 @@ const Todo: React.FC<ITodoProps> = ({ data }: ITodoProps) => {
         <List.Item>
           <List.Item.Meta
             title={item.title}
-            description={<Text type="secondary">{item.createdAt.toLocaleDateString()}</Text>}
+            description={<Text type="secondary">{new Date(item.created_at).toLocaleDateString()}</Text>}
           />
           {/* <Typography.Text mark>[ITEM]</Typography.Text> {item} */}
         </List.Item>

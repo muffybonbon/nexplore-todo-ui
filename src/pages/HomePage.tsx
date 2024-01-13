@@ -1,32 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Todo from '../components/Todo/Todo';
 
-import { ITodoItem } from '../types/components/todoTypes';
+import TodoService from '../services/TodoService';
+
+import { ITodo } from '../types/components/todo.component.types';
+
+const API_VERSION = 'v1';
 
 const HomePage: React.FC = () => {
-  const data: ITodoItem[] = [
-    {
-      title: 'Ant Design Title 1',
-      createdAt: new Date(),
-    },
-    {
-      title: 'Ant Design Title 2',
-      createdAt: new Date(),
-    },
-    {
-      title: 'Ant Design Title 3',
-      createdAt: new Date(),
-    },
-    {
-      title: 'Ant Design Title 4',
-      createdAt: new Date(),
-    },
-  ];
+  const [todos, setTodos] = useState<ITodo[]>([]);
+
+  const TodoAPI = new TodoService(API_VERSION);
+
+  useEffect(() => {
+    const fetchTodos = async () => {
+      const todos = await TodoAPI.getTodos();
+      setTodos(todos);
+    };
+
+    fetchTodos();
+  }, []);
 
   return (
     <>
-      <Todo data={data} />
+      <Todo data={todos} />
     </>
   );
 };
