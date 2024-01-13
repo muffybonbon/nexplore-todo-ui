@@ -16,19 +16,28 @@ const HomePage: React.FC = () => {
   const TodoAPI = new TodoService(API_VERSION);
 
   const fetchTodos = async () => {
-    setIsLoading(true);
     const fetchedTodos = await TodoAPI.getTodos();
     setTodos(fetchedTodos);
     setIsLoading(false);
   };
 
   useEffect(() => {
+    setIsLoading(true);
     fetchTodos();
   }, []);
 
   const onCreateTodo = async (todo: ITodoCreate) => {
+    setIsLoading(true);
     const createResult = await TodoAPI.addTodo(todo);
     if (createResult && createResult.id) {
+      fetchTodos();
+    }
+  };
+
+  const onUpdateTodoStatus = async (id: number, isDone: boolean) => {
+    setIsLoading(true);
+    const updateResult = await TodoAPI.patchTodoStatusById(id, isDone);
+    if (updateResult && updateResult.id) {
       fetchTodos();
     }
   };
@@ -36,7 +45,7 @@ const HomePage: React.FC = () => {
   return (
     <>
       <TodoCreate onCreate={onCreateTodo} isLoading={isLoading} />
-      <TodoView data={todos} />
+      <TodoView data={todos} onUpdateTodoStatus={onUpdateTodoStatus} />
     </>
   );
 };

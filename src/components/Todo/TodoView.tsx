@@ -2,15 +2,13 @@ import React from 'react';
 import { List, Typography } from 'antd';
 import styled from 'styled-components';
 
+import TodoItem from './TodoItem';
+
 import { getDateInfo } from '../../utils/dateUtils';
 
-import { ITodo } from '../../types/todo.types';
+import { ITodoViewProps } from '../../types/todo.types';
 
 const { Text } = Typography;
-
-interface ITodoProps {
-  data: ITodo[];
-}
 
 const HeaderTitle = styled.p.withConfig(Text)`
   margin: 0;
@@ -18,7 +16,7 @@ const HeaderTitle = styled.p.withConfig(Text)`
   font-weight: bold;
 `;
 
-const Todo: React.FC<ITodoProps> = ({ data }: ITodoProps) => {
+const Todo: React.FC<ITodoViewProps> = ({ data, onUpdateTodoStatus }) => {
   const { date, month, year } = getDateInfo(new Date());
 
   return (
@@ -31,15 +29,7 @@ const Todo: React.FC<ITodoProps> = ({ data }: ITodoProps) => {
       }
       bordered
       dataSource={data}
-      renderItem={(item) => (
-        <List.Item>
-          <List.Item.Meta
-            title={item.title}
-            description={<Text type="secondary">{new Date(item.created_at).toLocaleDateString()}</Text>}
-          />
-          {/* <Typography.Text mark>[ITEM]</Typography.Text> {item} */}
-        </List.Item>
-      )}
+      renderItem={(item) => <TodoItem item={item} onUpdateTodoStatus={onUpdateTodoStatus} />}
     />
   );
 };
