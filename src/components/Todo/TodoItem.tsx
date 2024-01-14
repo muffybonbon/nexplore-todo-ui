@@ -35,7 +35,7 @@ const TodoItem: React.FC<ITodoItemProps> = ({ item, onDeleteTodo, onUpdateTodo, 
     if (value) {
       onUpdateTodo(item.id, { title: value, is_done });
     } else {
-      toast('Todo title cannot be empty', { type: 'error' });
+      toast('Title cannot be empty', { type: 'error' });
     }
   };
 
@@ -43,10 +43,10 @@ const TodoItem: React.FC<ITodoItemProps> = ({ item, onDeleteTodo, onUpdateTodo, 
     <List.Item
       actions={[
         <div key={item.id}>
-          <StyledButton type="default" onClick={onClickUpdateStatus}>
+          <StyledButton type="default" role="button" onClick={onClickUpdateStatus}>
             ✅
           </StyledButton>
-          <StyledButton type="default" onClick={onClickDelete}>
+          <StyledButton type="default" role="button" onClick={onClickDelete}>
             ❌
           </StyledButton>
         </div>,
