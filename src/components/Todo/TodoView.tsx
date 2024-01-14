@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import TodoItem from './TodoItem';
 
-import { getDateInfo } from '../../utils/dateUtils';
+import { getDateInfo } from '../../utils/date.utils';
 
 import { ITodoViewProps } from '../../types/todo.types';
 
