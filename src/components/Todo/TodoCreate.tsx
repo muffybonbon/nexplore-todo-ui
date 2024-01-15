@@ -34,7 +34,7 @@ const TodoCreate: React.FC<ITodoCreateProps> = ({ onCreate, isLoading }) => {
     <StyledForm layout="vertical" onFinish={onSubmitForm}>
       <Flex>
         <StyledTodoInput placeholder="Add a task..." value={input} onChange={onChange} />
-        <Button type="primary" disabled={!input} loading={isLoading} htmlType="submit">
+        <Button type="primary" disabled={!input} loading={isLoading} htmlType="submit" role="button">
           +
         </Button>
       </Flex>
